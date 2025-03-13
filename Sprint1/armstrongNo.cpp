@@ -1,69 +1,30 @@
-// #include <bits/stdc++.h>
-// using namespace std;
-
-// int armstrongNo(){
-//     int n ;
-//     cin >> n;
-//     int sum = 0;
-//     int originaln = n ;
-
-//     while(n>0){
-//         int lastdigit = n%10;
-//         sum += pow(lastdigit , 3);
-//         n = n/10;
-//     }
-
-//     if(sum == originaln){
-//         cout<<"armstrong";
-//     }
-//     else{
-//         cout <<"no strong";
-//     }
-//     return 0;
-// }
-
-// int main(){
-//     armstrongNo();
-    
-// }
-
-#include <iostream>
-#include <cmath>
-using namespace std;
-
-bool isArmstrong(int n) {
-    int originaln = n;
+a)  int original = number;
     int sum = 0;
-
-    // Calculate the number of digits
-    int numDigits = 0;
-    int temp = n;
-    while (temp > 0) {
-        numDigits++;
-        temp /= 10;
+    
+    // Process each digit
+    while (number > 0) {
+        int digit = number % 10;
+        // Calculate cube of digit (for a 3-digit Armstrong number)
+        sum += digit * digit * digit; // Alternatively: sum += pow(digit, 3);
+        number /= 10;
     }
+    
+    return (sum == original);
 
-    // Calculate the Armstrong sum
-    while (n > 0) {
-        int lastdigit = n % 10;
-        sum += pow(lastdigit, numDigits);
-        n /= 10;
+b)  // Precompute cubes for digits 0 through 9
+    int cube[10] = {0, 1, 8, 27, 64, 125, 216, 343, 512, 729};
+    
+    int original = number;
+    int sum = 0;
+    
+    // Process each digit using the precomputed cube values
+    while (number > 0) {
+        int digit = number % 10;
+        sum += cube[digit]; // Lookup cube instead of calculating it each time
+        number /= 10;
     }
+    
+    return (sum == original);
 
-    // Check if sum matches the original number
-    return sum == originaln;
-}
-
-int main() {
-    int n;
-    cout << "Enter a number: ";
-    cin >> n;
-
-    if (isArmstrong(n)) {
-        cout << "Armstrong Number" << endl;
-    } else {
-        cout << "Not an Armstrong Number" << endl;
-    }
-
-    return 0;
-}
+NOTE: If you check every 2‑digit number, you’ll find that no 2‑digit number satisfies this condition. 
+EXAMPLES : 153, 370, 371, 407, 1634, 8208, 9474.
