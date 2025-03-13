@@ -1,14 +1,9 @@
-#include <iostream>
-using namespace std;
+a)  if (number % 2 == 0)
+        return "Even";
+    else
+        return "Odd";
 
-int evenOdd(){
-    int n ;
-    cin>>n;
-    if(n%2 == 0) cout<< "even";
-    else cout<<"odd";
-}
+b)  return (number % 2 == 0) ? "Even" : "Odd";
 
-int main(){
-  evenOdd();
-    return 0;
-}
+c)  return ((number & 1) == 0) ? "Even" : "Odd";
+
